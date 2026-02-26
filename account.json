@@ -1,0 +1,32 @@
+{
+  "owner": "Andrew",
+  "balance": 125,
+  "history": [
+    {
+      "type": "deposit",
+      "amount": 100
+    },
+    {
+      "type": "withdraw",
+      "amount": 20
+    },
+    {
+      "id": 1772087950819,
+      "type": "deposit",
+      "amount": 10,
+      "time": "2026-02-26T06:39:10.819Z"
+    },
+    {
+      "id": 1772087954689,
+      "type": "deposit",
+      "amount": 20,
+      "time": "2026-02-26T06:39:14.689Z"
+    },
+    {
+      "id": 1772087959450,
+      "type": "withdraw",
+      "amount": 5,
+      "time": "2026-02-26T06:39:19.450Z"
+    }
+  ]
+}
