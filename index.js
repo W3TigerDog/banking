@@ -1,7 +1,8 @@
 console.log("Banking system started");
 
-const readline = require("readline");
 
+
+const readline = require("readline");
 const fs = require("fs");
 
 function loadAccount() {
@@ -13,7 +14,6 @@ function loadAccount() {
 }
 
 function createAccount(owner, balance, history = []) {
-
   function isValidAmount(amount) {
     return Number.isFinite(amount) && amount > 0;
   }
@@ -34,39 +34,50 @@ function createAccount(owner, balance, history = []) {
     balance,
     history,
 
-    deposit(amount) {
+    setOwner(newName) {
+      if (!newName) {
+        console.log("Invalid name");
+        return;
+      }
+      this.owner = newName;
+      saveToFile(this);
+      console.log(`Owner changed to ${newName}`);
+    },
 
+    deposit(amount) {
       if (!isValidAmount(amount)) {
         console.log("Invalid amount");
-        return;}
+        return;
+      }
 
       this.balance += amount;
       this.history.push({
         id: Date.now(),
         type: "deposit",
         amount,
-        time: new Date().toISOString()
+        time: new Date().toISOString(),
       });
       saveToFile(this);
       console.log(`Deposited ${amount}`);
     },
 
     withdraw(amount) {
-
       if (!isValidAmount(amount)) {
         console.log("Invalid amount");
-        return};
+        return;
+      }
 
       if (amount > this.balance) {
         console.log("Insufficient funds");
         return;
       }
+
       this.balance -= amount;
       this.history.push({
         id: Date.now(),
         type: "withdraw",
         amount,
-        time: new Date().toISOString()
+        time: new Date().toISOString(),
       });
       saveToFile(this);
       console.log(`Withdrew ${amount}`);
@@ -77,29 +88,30 @@ function createAccount(owner, balance, history = []) {
     },
 
     showHistory(limit) {
-        const n = Number(limit);
-
-    if (Number.isFinite(n) && n > 0) {
+      const n = Number(limit);
+      if (Number.isFinite(n) && n > 0) {
         console.log(this.history.slice(-n));
         return;
-    }
-
-    console.log(this.history);
-    }
+      }
+      console.log(this.history);
+    },
   };
 }
 
 const account = loadAccount();
+console.log(`Welcome ${account.owner}`);
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
 
 console.log("Mini Bank CLI Started");
-console.log("Commands: deposit 50 | withdraw 20 | balance | history [n] | exit");
+console.log("Commands: deposit 50 | withdraw 20 | balance | history [n] | setowner NAME | exit");
+
 rl.on("line", (input) => {
-  const [command, value] = input.trim().split(/\s+/);
+  const [command, ...rest] = input.trim().split(/\s+/);
+  const value = rest.join(" "); // 允许名字有空格，比如 "Andrew Wei"
 
   switch (command) {
     case "deposit":
@@ -111,11 +123,14 @@ rl.on("line", (input) => {
     case "balance":
       account.checkBalance();
       break;
-    case "exit":
-      rl.close();
-      break;
     case "history":
       account.showHistory(value);
+      break;
+    case "setowner":
+      account.setOwner(value);
+      break;
+    case "exit":
+      rl.close();
       break;
     default:
       console.log("Unknown command");
