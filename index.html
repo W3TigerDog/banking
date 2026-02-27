@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banking App</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>Banking App</h1>
+        <p class="sub">Simple front-end banking demo (LocalStorage)</p>
+      </header>
+
+      <section class="card">
+        <div class="row">
+          <div>
+            <div class="label">Owner</div>
+            <div id="owner" class="value">—</div>
+          </div>
+          <div class="right">
+            <div class="label">Balance</div>
+            <div id="balance" class="value">$0.00</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Actions</h2>
+
+        <div class="grid">
+          <div class="field">
+            <label for="amount">Amount</label>
+            <input id="amount" type="number" inputmode="decimal" placeholder="e.g. 50" />
+          </div>
+
+          <div class="field">
+            <label for="note">Note (optional)</label>
+            <input id="note" type="text" placeholder="e.g. groceries" />
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button id="depositBtn">Deposit</button>
+          <button id="withdrawBtn" class="secondary">Withdraw</button>
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="newOwner">Change owner</label>
+            <input id="newOwner" type="text" placeholder="e.g. Andrew" />
+          </div>
+          <div class="buttons">
+            <button id="setOwnerBtn" class="secondary">Set Owner</button>
+            <button id="resetBtn" class="danger">Reset Account</button>
+          </div>
+        </div>
+
+        <p id="msg" class="msg"></p>
+      </section>
+
+      <section class="card">
+        <h2>History</h2>
+        <ul id="history" class="history"></ul>
+      </section>
+
+      <footer class="footer">
+        <small>Data is saved in your browser (LocalStorage).</small>
+      </footer>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
