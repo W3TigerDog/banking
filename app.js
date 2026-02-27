@@ -1,5 +1,7 @@
 const STORAGE_KEY = "banking_account_v1";
 
+
+
 function formatMoney(n) {
   return new Intl.NumberFormat("en-CA", {
     style: "currency",
