@@ -10,7 +10,7 @@ function loadAccount() {
     const data = JSON.parse(fs.readFileSync("account.json"));
     return createAccount(data.owner, data.balance, data.history);
   }
-  return createAccount("Andrew", 100);
+  return createAccount("W3TigerDog", 100);
 }
 
 function createAccount(owner, balance, history = []) {
@@ -111,7 +111,7 @@ console.log("Commands: deposit 50 | withdraw 20 | balance | history [n] | setown
 
 rl.on("line", (input) => {
   const [command, ...rest] = input.trim().split(/\s+/);
-  const value = rest.join(" "); // 允许名字有空格，比如 "Andrew Wei"
+  const value = rest.join(" "); // 允许名字有空格，比如 "Tiger Dog"
 
   switch (command) {
     case "deposit":
