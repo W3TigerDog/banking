@@ -147,7 +147,7 @@ resetBtn.addEventListener("click", () => {
   const ok = confirm("Reset account to default? This will clear history.");
   if (!ok) return;
 
-  account = { owner: "Andrew", balance: 100, history: [] };
+  account = { owner: "TigerCat", balance: 100, history: [] };
   saveAccount(account);
   render();
   setMsg("Account reset ✅");
